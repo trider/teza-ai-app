@@ -1,0 +1,48 @@
+<div class="container">
+
+ <div class="mx-auto p-2" style="margin-top: 100px">
+   <div class="card">
+    
+     <div class="card-header bg-primary">
+       <h4 class="text-light text-center">Bands</h4>
+     </div>
+     <div class="card-body">
+       <form [formGroup]="bandForm" class="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">API Key</label>
+          <input class="form-control" formControlName="apiKey" (input)="checkKey()">
+        </div>
+         <div class="mb-3">
+           <label class="form-label">Name</label>
+           <input class="form-control" formControlName="name">
+         </div>
+         <div class="mb-3">
+           <label class="form-label">Band</label>
+           <textarea class="form-control" formControlName="band" rows="5">
+            
+           </textarea>
+         </div>
+         <div class="mb-3">
+          <label class="form-label">Year</label>
+          <select class="form-control" formControlName="year" (input)="checkOddOrEven()">
+           <option *ngFor="let year of years; let i = index" [value]="year"  >
+             {{ year }}
+           </option>
+         </select>
+        
+         </div>
+         <button type="submit" class="btn btn-primary" [disabled]="!isDisabled">Let’s get rolling</button>
+      </form>
+
+     </div>
+     
+
+   </div>
+   <div *ngIf="completion">{{completion}}</div>
+   <div *ngIf="image">
+    <img src="{{image}}"/>
+  </div>
+  <div *ngIf="stats">{{stats}}</div>
+  <div *ngIf="theYear">{{theYear}}</div>
+ </div>
+</div>
